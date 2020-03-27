@@ -166,47 +166,45 @@ export default class Category extends React.Component {
         )}
         {this.state.category.length > 0 && (
           <div className="col-12">
-            <div className="col-12 grid-margin stretch-card">
-              <div className="card">
-                <div className="card-body">
-                  <h4 className="card-title">Kategoriler</h4>
-                  <div className="table-responsive">
-                    <table className="table">
-                      <thead>
-                        <tr>
-                          <th>Sil</th>
-                          <th>id</th>
-                          <th>Kategori Gorsel</th>
-                          <th>Kategori ismi Turkce</th>
-                          <th>Kategori ismi Ingilizce</th>
-                          <th>Kayitli urun sayisi</th>
+            <div className="card">
+              <div className="card-body">
+                <h4 className="card-title">Kategoriler</h4>
+                <div className="table-responsive">
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th>Sil</th>
+                        <th>id</th>
+                        <th>Kategori Gorsel</th>
+                        <th>Kategori ismi Turkce</th>
+                        <th>Kategori ismi Ingilizce</th>
+                        <th>Kayitli urun sayisi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {this.state.category.map(val => (
+                        <tr key={val.id}>
+                          <td>
+                            <i
+                              onClick={() => this.deleteCategory(val.id)}
+                              className="icon-trash"
+                            ></i>
+                          </td>
+                          <td>{val.id}</td>
+                          <td className="text-center">
+                            <img
+                              className="img-fluid"
+                              src={val.img}
+                              alt={val.trName}
+                            />
+                          </td>
+                          <td>{val.trName}</td>
+                          <td>{val.enName}</td>
+                          <td>{val.count}</td>
                         </tr>
-                      </thead>
-                      <tbody>
-                        {this.state.category.map(val => (
-                          <tr key={val.id}>
-                            <td>
-                              <i
-                                onClick={() => this.deleteCategory(val.id)}
-                                className="icon-trash"
-                              ></i>
-                            </td>
-                            <td>{val.id}</td>
-                            <td className="text-center">
-                              <img
-                                className="img-fluid"
-                                src={val.img}
-                                alt={val.trName}
-                              />
-                            </td>
-                            <td>{val.trName}</td>
-                            <td>{val.enName}</td>
-                            <td>{val.count}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>

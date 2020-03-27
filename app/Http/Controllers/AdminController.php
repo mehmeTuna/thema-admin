@@ -138,6 +138,109 @@ class AdminController extends Controller
         ]);
     }
 
+    public function productCreate(Request $request)
+    {
+        $productName = $request->name;
+        $nameEn = $request->nameEn;
+        $category = $request->category;
+        $quantity = $request->quantity < 0 ? 1 : $request->quantity;
+        $price = $request->price;
+        $content = $request->cardText;
+        $code = $request->code;
+        $features = $request->features;
+        $contentEn = $request->contentEn;
+        $img = [];
+
+        if ($request->hasFile('img0')) {
+            $image = $request->file('img0');
+            $name = time() . rand(1, 100) . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $img[0] = '/public/images/' . $name;
+        }
+
+        if ($request->hasFile('img1')) {
+            $image = $request->file('img1');
+            $name = time() . rand(1, 100) . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $img[1] = '/public/images/' . $name;
+        }
+
+        if ($request->hasFile('img2')) {
+            $image = $request->file('img2');
+            $name = time() . rand(1, 100) . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $img[2] = '/public/images/' . $name;
+        }
+
+        if ($request->hasFile('img3')) {
+            $image = $request->file('img3');
+            $name = time() . rand(1, 100) . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $img[3] = '/public/images/' . $name;
+        }
+
+        $product = Product::create([
+            'price' => $price,
+            'trName' => $productName,
+            'enName' => $nameEn,
+            'quantity' => $quantity,
+            'categoryId' => $category,
+            'trContent' => $content,
+            'img' => $img[0],
+            'otherImg' => $img,
+            'code' => $code,
+            'features' => (int) $features,
+            'enContent' => $contentEn,
+        ]);
+
+        return response()->json([
+            'status' => true,
+        ]);
+
+    }
+
+    public function productDelete(Request $request)
+    {
+        $id = $request->id;
+
+        $data = Product::where('id', $id)->update(['active' => 0]);
+
+        return response()->json([
+            'status' => true,
+        ]);
+    }
+
+    public function productList()
+    {
+        $product = Product::where('active', 1)->orderBy('created_at', 'desc')->get();
+
+        $result = $product->map(function ($val) {
+            $data = (object) [];
+            $category = Category::where('id', $val->categoryId)->first();
+            $data->id = $val->id;
+            $data->code = $val->code;
+            $data->img = $val->img;
+            $data->trName = $val->trName;
+            $data->features = $val->features;
+            $data->trContent = $val->trContent;
+            $data->enContent = $val->enContent;
+            $data->date = $val->created_at;
+            $data->category = $category->trName;
+            $data->stok = $val->quantity;
+            $data->price = $val->price;
+            return $data;
+        });
+
+        return response()->json([
+            'status' => true,
+            'data' => $result,
+        ]);
+    }
+
     public function newAbout(SiteUpdateDataRequest $request)
     {
 

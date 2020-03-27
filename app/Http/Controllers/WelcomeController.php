@@ -34,11 +34,9 @@ class WelcomeController extends Controller
 
     public function index()
     {
-        $about = About::where('id', 1)->active()->first();
+        //$about = About::where('id', 1)->active()->first();
 
-        return view('home', [
-            'data' => $about,
-        ]);
+        return view('home');
     }
 
 }
