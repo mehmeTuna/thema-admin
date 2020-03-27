@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import {Link} from 'react-router-dom'
 
 export default class Sidebar extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   render() {
@@ -16,31 +16,49 @@ export default class Sidebar extends React.Component {
         </div>
         <ul className="nav">
           <li className="nav-item">
-            <Link to={"/yonetim/anasayfa"} className="nav-link">
+            <Link to={'/yonetim/anasayfa'} className="nav-link">
               <i className="icon-box menu-icon" />
               <span className="menu-title">AnaSayfa</span>
             </Link>
           </li>
           <li className="nav-item">
-            <Link to={"/yonetim/logo-slider"} className="nav-link">
+            <Link to={'/yonetim/siparisler'} className="nav-link">
+              <i className="icon-box menu-icon" />
+              <span className="menu-title">Siparisler</span>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to={'/yonetim/urunler'} className="nav-link">
+              <i className="icon-box menu-icon" />
+              <span className="menu-title">Urunler</span>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to={'/yonetim/kategoriler'} className="nav-link">
+              <i className="icon-box menu-icon" />
+              <span className="menu-title">Kategoriler</span>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to={'/yonetim/logo-slider'} className="nav-link">
               <i className="icon-box menu-icon" />
               <span className="menu-title"> Slider</span>
             </Link>
           </li>
           <li className="nav-item">
-            <Link to={"/yonetim/galeri"} className="nav-link">
+            <Link to={'/yonetim/galeri'} className="nav-link">
               <i className="icon-box menu-icon" />
               <span className="menu-title">Galeri</span>
             </Link>
           </li>
           <li className="nav-item">
-            <Link to={"/yonetim/anasayfa"} className="nav-link">
+            <Link to={'/yonetim/anasayfa'} className="nav-link">
               <i className="icon-box menu-icon" />
               <span className="menu-title">Hakkında</span>
             </Link>
           </li>
         </ul>
       </nav>
-    );
+    )
   }
 }

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\About;
 use App\Admin;
+use App\Category;
 use App\Http\Requests\SiteUpdateDataRequest;
+use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -75,6 +77,65 @@ class AdminController extends Controller
     public function home()
     {
         return view('yonetim.home');
+    }
+
+    public function categoryList()
+    {
+        $category = Category::where('active', 1)->get();
+
+        $category = $category->map(function ($data) {
+            $result = (object) [];
+            $result->id = $data->id;
+            $result->img = $data->img;
+            $result->trName = $data->trName;
+            $result->enName = $data->enName;
+            $result->count = Product::where('active', 1)->where('categoryId', $data->id)->count();
+
+            return $result;
+        });
+
+        return response()->json([
+            'status' => true,
+            'data' => $category,
+        ]);
+    }
+
+    public function categoryDelete(Request $request)
+    {
+        $result = Category::where('active', 1)->where('id', $request->id)->first();
+
+        $result->update([
+            'active' => 0,
+        ]);
+
+        $result->save();
+
+        return response()->json([
+            'status' => true,
+        ]);
+    }
+
+    public function categoryCreate(Request $request)
+    {
+        $img = [];
+
+        if ($request->hasFile('img0')) {
+            $image = $request->file('img0');
+            $name = time() . rand(1, 100) . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $img[0] = '/public/images/' . $name;
+        }
+
+        $category = Category::create([
+            'trName' => $request->nameTr,
+            'enName' => $request->nameEn,
+            'img' => $img[0],
+        ]);
+
+        return response()->json([
+            'status' => true,
+        ]);
     }
 
     public function newAbout(SiteUpdateDataRequest $request)

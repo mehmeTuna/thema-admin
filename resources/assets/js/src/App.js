@@ -1,19 +1,22 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
-import Navbar from "./Navbar";
-import Sidebar from "./Sidebar";
-import Footer from "./Footer";
+import Navbar from './Navbar'
+import Sidebar from './Sidebar'
+import Footer from './Footer'
 
-import About from "./About";
-import Home from "./Home";
-import Gallery from "./Gallery";
-import LogoSlider from "./LogoSlider";
+import About from './About'
+import Home from './Home'
+import Gallery from './Gallery'
+import LogoSlider from './LogoSlider'
+import Orders from './Orders'
+import Products from './Products'
+import Category from './Category'
 
 class App extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
   render() {
     return (
@@ -32,6 +35,15 @@ class App extends React.Component {
                     <Route path="/yonetim/galeri">
                       <Gallery />
                     </Route>
+                    <Route path="/yonetim/siparisler">
+                      <Orders />
+                    </Route>
+                    <Route path="/yonetim/urunler">
+                      <Products />
+                    </Route>
+                    <Route path="/yonetim/kategoriler">
+                      <Category />
+                    </Route>
                     <Route path="/yonetim/logo-slider">
                       <LogoSlider />
                     </Route>
@@ -49,10 +61,10 @@ class App extends React.Component {
           <Footer />
         </div>
       </Router>
-    );
+    )
   }
 }
 
-if (document.getElementById("root")) {
-  ReactDOM.render(<App />, document.getElementById("root"));
+if (document.getElementById('root')) {
+  ReactDOM.render(<App />, document.getElementById('root'))
 }

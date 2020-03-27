@@ -30,7 +30,13 @@ Route::middleware(['admin'])->group(function () {
     Route::get('yonetim/logo-slider', 'AdminController@home');
     Route::get('yonetim/galeri', 'AdminController@home');
     Route::get('yonetim/hakkinda', 'AdminController@home');
+    Route::get('yonetim/siparisler', 'AdminController@home');
+    Route::get('yonetim/urunler', 'AdminController@home');
+    Route::get('yonetim/kategoriler', 'AdminController@home');
 
+    Route::post('category/create', 'AdminController@categoryCreate');
+    Route::post('category/list', 'AdminController@categoryList');
+    Route::post('category/delete', 'AdminController@categoryDelete');
     Route::post('galleryupdate', 'AdminController@galleryUpdate');
     Route::post('logoupdate', 'AdminController@logoUpdate');
     Route::post('sliderupdate', 'AdminController@sliderUpdate');

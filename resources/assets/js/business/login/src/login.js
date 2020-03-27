@@ -64,7 +64,7 @@ export default function SignIn() {
   }
 
   const handleChange = e => {
-    console.log(e)
+    console.log(e.target.value)
     setData(Object.assign({}, data, {[e.name]: [e.target.value]}))
   }
 
