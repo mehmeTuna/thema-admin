@@ -1,12 +1,10 @@
-require('./../../bootstrap');
-
 import ReactDOM from 'react-dom'
+import SignIn from './src/login.js'
 
-window.React = require('react');
+require('./../../bootstrap')
 
-import Login from "./src/app.js" ;
+window.React = require('react')
 
 if (document.getElementById('root')) {
-    ReactDOM.render(
-        <Login/>, document.getElementById('root'));
+  ReactDOM.render(<SignIn />, document.getElementById('root'))
 }

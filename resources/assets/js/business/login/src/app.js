@@ -1,48 +1,46 @@
-import React from "react";
-import Axios from "axios";
+import React from 'react'
+import Axios from 'axios'
 
 export default class Login extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
-      username: "",
-      password: "",
+      username: '',
+      password: '',
       alert: false,
-      alertText: "Kullanici adi veya parola hatali"
-    };
+      alertText: 'Kullanici adi veya parola hatali'
+    }
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   async handleSubmit() {
-    if (this.state.username === "" || this.state.password === "") {
-      this.setState({ alert: true });
-      return;
+    if (this.state.username === '' || this.state.password === '') {
+      this.setState({alert: true})
+      return
     }
 
-    const { data } = await Axios.post("/business/loginData", {
+    const {data} = await Axios.post('/business/loginData', {
       username: this.state.username,
       password: this.state.password
-    });
+    })
 
     if (data.status === false) {
-      this.setState({ alert: true });
-      this.setState({ alertText: data.text });
+      this.setState({alert: true})
+      this.setState({alertText: data.text})
     }
 
     if (data.status === true) {
-      this.setState({ alert: false });
-      window.location.href = data.url;
-      return;
+      this.setState({alert: false})
+      window.location.href = data.url
+      return
     }
-
-    console.log(data);
   }
 
   componentDidMount() {
-    if (this.props.username === "" && this.props.password === "") {
-      this.setState({ alert: true });
+    if (this.props.username === '' && this.props.password === '') {
+      this.setState({alert: true})
     }
   }
 
@@ -69,13 +67,13 @@ export default class Login extends React.Component {
                           type="username"
                           className={
                             this.state.alert === true &&
-                            this.state.username === ""
-                              ? "form-control form-control-lg border border-danger"
-                              : "form-control form-control-lg"
+                            this.state.username === ''
+                              ? 'form-control form-control-lg border border-danger'
+                              : 'form-control form-control-lg'
                           }
                           value={this.state.username}
                           onChange={e =>
-                            this.setState({ username: e.target.value })
+                            this.setState({username: e.target.value})
                           }
                           placeholder="Email"
                         />
@@ -85,13 +83,13 @@ export default class Login extends React.Component {
                           type="password"
                           className={
                             this.state.alert === true &&
-                            this.state.password === ""
-                              ? "form-control form-control-lg border border-danger"
-                              : "form-control form-control-lg"
+                            this.state.password === ''
+                              ? 'form-control form-control-lg border border-danger'
+                              : 'form-control form-control-lg'
                           }
                           value={this.state.password}
                           onChange={e =>
-                            this.setState({ password: e.target.value })
+                            this.setState({password: e.target.value})
                           }
                           placeholder="Parola"
                         />
@@ -121,6 +119,6 @@ export default class Login extends React.Component {
           </div>
         </div>
       </React.Fragment>
-    );
+    )
   }
 }
