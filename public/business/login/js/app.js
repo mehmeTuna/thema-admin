@@ -51945,8 +51945,10 @@ function (_React$Component) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                event.preventDefault();
+
                 if (!(this.state.username === '' || this.state.password === '')) {
-                  _context.next = 3;
+                  _context.next = 4;
                   break;
                 }
 
@@ -51955,14 +51957,14 @@ function (_React$Component) {
                 });
                 return _context.abrupt("return");
 
-              case 3:
-                _context.next = 5;
+              case 4:
+                _context.next = 6;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/business/loginData', {
                   username: this.state.username,
                   password: this.state.password
                 });
 
-              case 5:
+              case 6:
                 _ref = _context.sent;
                 data = _ref.data;
 
@@ -51976,7 +51978,7 @@ function (_React$Component) {
                 }
 
                 if (!(data.status === true)) {
-                  _context.next = 12;
+                  _context.next = 13;
                   break;
                 }
 
@@ -51986,7 +51988,7 @@ function (_React$Component) {
                 window.location.href = data.url;
                 return _context.abrupt("return");
 
-              case 12:
+              case 13:
               case "end":
                 return _context.stop();
             }
@@ -52033,11 +52035,12 @@ function (_React$Component) {
       }), this.state.alert === true && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
         className: "font-weight-light text-danger text-center"
       }, this.state.alertText), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
-        className: "pt-3"
+        className: "pt-3",
+        onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-        type: "username",
+        type: "email",
         className: this.state.alert === true && this.state.username === '' ? 'form-control form-control-lg border border-danger' : 'form-control form-control-lg',
         value: this.state.username,
         onChange: function onChange(e) {
@@ -52058,9 +52061,7 @@ function (_React$Component) {
           });
         },
         placeholder: "Parola"
-      }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "mt-3"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
         className: "btn btn-block text-white thema-background-color btn-lg font-weight-medium auth-form-btn",
         onClick: this.handleSubmit
       }, "Giri\u015F Yap")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {

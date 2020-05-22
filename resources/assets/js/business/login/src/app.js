@@ -16,6 +16,7 @@ export default class Login extends React.Component {
   }
 
   async handleSubmit() {
+    event.preventDefault()
     if (this.state.username === '' || this.state.password === '') {
       this.setState({alert: true})
       return
@@ -61,10 +62,10 @@ export default class Login extends React.Component {
                         {this.state.alertText}
                       </h6>
                     )}
-                    <form className="pt-3">
+                    <form className="pt-3" onSubmit={this.handleSubmit}>
                       <div className="form-group">
                         <input
-                          type="username"
+                          type="email"
                           className={
                             this.state.alert === true &&
                             this.state.username === ''
@@ -94,15 +95,13 @@ export default class Login extends React.Component {
                           placeholder="Parola"
                         />
                       </div>
-                    </form>
-                    <div className="mt-3">
                       <button
                         className="btn btn-block text-white thema-background-color btn-lg font-weight-medium auth-form-btn"
                         onClick={this.handleSubmit}
                       >
                         Giriş Yap
                       </button>
-                    </div>
+                    </form>
                     <div className="my-2 d-flex justify-content-between align-items-center">
                       <div className="form-check">
                         <label className="form-check-label text-muted">
